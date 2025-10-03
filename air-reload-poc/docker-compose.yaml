@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    working_dir: /app
+    command: air -c .air.toml
+    volumes:
+      - ./app:/app                  # mount source
+      - ./go-mod-cache:/go/pkg/mod  # cache dependencies
+    ports:
+      - "8080:8080"
+
+volumes:
+  go-mod-cache:
